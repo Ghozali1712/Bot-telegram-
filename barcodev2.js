@@ -12,15 +12,18 @@ let barcodeData = [];
 const config = {
     ADMIN_LIST: new Set([5183628785, 987654321]), // 🔹 Ganti dengan daftar ID admin
     ADMIN_TELEGRAM_ID: 5183628785, // 🔹 Ganti dengan ID Telegram Admin
-    MAX_WORKERS: Math.min(1, os.cpus().length), // Batasi maksimal 4 worker
+    MAX_WORKERS: Math.min(4, os.cpus().length), // Batasi maksimal 4 worker
     TEMP_DIR: path.join(__dirname, 'temp'), // Direktori untuk menyimpan file sementara
     BARCODE_FILE: path.join(__dirname, 'barcode.json'), // File data barcode
-    LOG_FILE: path.join(__dirname, 'app.log') // File untuk menyimpan log
+    LOG_FILE: path.join(__dirname, 'app.log'), // File untuk menyimpan log
+    MESSAGE_DELAY: 1000, // Delay antara pengiriman pesan (dalam milidetik)
+    MAX_RETRIES: 3, // Jumlah maksimal percobaan ulang pengiriman pesan
+    BACKOFF_FACTOR: 2 // Faktor backoff untuk retry
 };
 
 // 🔹 Validasi jumlah worker
 if (config.MAX_WORKERS < 1) {
-    config.MAX_WORKERS = false; // Default ke 2 worker jika hasilnya tidak valid
+    config.MAX_WORKERS = 2; // Default ke 2 worker jika hasilnya tidak valid
 }
 
 // 🔹 Logger yang menyimpan log ke file
@@ -101,7 +104,7 @@ ${pluList.join(', ')}
 }
 
 // 🔹 Fungsi untuk Mengirim Pesan dengan Retry dan Backoff
-async function sendWithRetry(bot, chatId, filePath, caption, options = {}, retries = 3, backoff = 1000) {
+async function sendWithRetry(bot, chatId, filePath, caption, options = {}, retries = config.MAX_RETRIES, backoff = config.MESSAGE_DELAY) {
     try {
         if (filePath) {
             // 🔹 Kirim gambar dengan caption
@@ -115,7 +118,7 @@ async function sendWithRetry(bot, chatId, filePath, caption, options = {}, retri
             const waitTime = error.response.body.parameters?.retry_after * 1000 || backoff; // Gunakan retry_after dari Telegram atau default backoff
             await log.warn(`⚠️ Rate limit terdeteksi. Menunggu ${waitTime}ms sebelum mencoba lagi...`);
             await delay(waitTime);
-            return sendWithRetry(bot, chatId, filePath, caption, options, retries - 1, backoff * 2); // Exponential backoff
+            return sendWithRetry(bot, chatId, filePath, caption, options, retries - 1, backoff * config.BACKOFF_FACTOR); // Exponential backoff
         } else {
             throw error; // Lempar error jika bukan 429 atau retries habis
         }
@@ -123,7 +126,7 @@ async function sendWithRetry(bot, chatId, filePath, caption, options = {}, retri
 }
 
 // 🔹 Fungsi untuk Mengirim Pesan dengan Antrian
-const queue = new PQueue({ concurrency: 1, interval: 1000 }); // 1 pesan per detik
+const queue = new PQueue({ concurrency: 1, interval: config.MESSAGE_DELAY }); // 1 pesan per detik
 
 async function sendWithQueue(bot, chatId, filePath, caption, options = {}) {
     await queue.add(() => sendWithRetry(bot, chatId, filePath, caption, options));
