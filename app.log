@@ -27,3 +27,6 @@
 2025-03-08T23:03:25.370Z - [32m[INFO][0m ✅ Barcode untuk 8999909096004 berhasil dibuat.
 2025-03-08T23:03:25.378Z - [32m[INFO][0m 📦 Gambar barcode disimpan: /data/data/com.termux/files/home/Bot-tele/temp/8999909096004.png
 2025-03-08T23:03:26.486Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-03-09T04:53:23.962Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
+2025-03-09T04:53:23.965Z - [32m[INFO][0m 📂 Memuat data barcode...
+2025-03-09T04:53:24.138Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6838 entri).
