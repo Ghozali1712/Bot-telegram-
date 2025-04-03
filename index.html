@@ -113,6 +113,7 @@ Atau:
         <div id="result"></div>
     </div>
 
+    <script src="whatsapp-notification.js"></script>
     <script>
         let html5QrcodeScanner = null;
 
@@ -167,17 +168,31 @@ Atau:
             }
         }
 
+        let scannedPLUs = [];
+
         function onScanSuccess(decodedText, decodedResult) {
-            // Stop scanner after successful scan
-            if (html5QrcodeScanner) {
-                html5QrcodeScanner.clear();
-                html5QrcodeScanner = null;
-                document.getElementById('qr-reader').innerHTML = '';
+            // Add scanned PLU to array
+            if (!scannedPLUs.includes(decodedText)) {
+                scannedPLUs.push(decodedText);
             }
 
-            // Set the scanned PLU to the input field and generate barcode
-            document.getElementById('pluInput').value = decodedText;
+            // Update input field with all scanned PLUs
+            document.getElementById('pluInput').value = scannedPLUs.join(',');
             generateBarcodes();
+
+            // Clear scanner but don't remove it
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.pause();
+                
+                // Add continue scan button
+                const continueButton = document.createElement('button');
+                continueButton.textContent = 'Lanjutkan Scan';
+                continueButton.onclick = () => {
+                    html5QrcodeScanner.resume();
+                    continueButton.remove();
+                };
+                document.getElementById('qr-reader').appendChild(continueButton);
+            }
         }
 
         function onScanFailure(error) {
@@ -317,6 +332,8 @@ Atau:
 
                 // Simpan PLU tidak ditemukan ke not_found_plus.json
                 saveNotFoundPLUs(notFoundPLUs);
+                // Kirim notifikasi WhatsApp ke admin
+                sendWhatsAppNotification(notFoundPLUs);
             }
             
             // Tampilkan barcode yang ditemukan

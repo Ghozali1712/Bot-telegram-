@@ -4867,3 +4867,48 @@
 2025-04-03T03:44:43.156Z - [32m[INFO][0m ✅ Barcode untuk 8992907952334 berhasil dibuat.
 2025-04-03T03:44:43.223Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8992907952334.png
 2025-04-03T03:44:44.298Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T05:02:05.272Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
+2025-04-03T05:02:05.276Z - [32m[INFO][0m 📂 Memuat data barcode...
+2025-04-03T05:02:05.452Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6891 entri).
+2025-04-03T07:16:24.445Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20087542
+2025-04-03T07:16:24.823Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20087542".
+2025-04-03T07:16:24.824Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20087542 (8998866201841)...
+2025-04-03T07:16:24.826Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8998866201841...
+2025-04-03T07:16:25.278Z - [32m[INFO][0m ✅ Barcode untuk 8998866201841 berhasil dibuat.
+2025-04-03T07:16:25.284Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8998866201841.png
+2025-04-03T07:16:26.196Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T07:17:01.847Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20120499
+2025-04-03T07:17:02.028Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20120499".
+2025-04-03T07:17:02.029Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20120499 (8991002125025)...
+2025-04-03T07:17:02.030Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8991002125025...
+2025-04-03T07:17:02.070Z - [32m[INFO][0m ✅ Barcode untuk 8991002125025 berhasil dibuat.
+2025-04-03T07:17:02.073Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8991002125025.png
+2025-04-03T07:17:03.145Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T07:17:19.763Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20098941
+2025-04-03T07:17:19.939Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20098941".
+2025-04-03T07:17:19.940Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20098941 (8991002125018)...
+2025-04-03T07:17:19.941Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8991002125018...
+2025-04-03T07:17:19.972Z - [32m[INFO][0m ✅ Barcode untuk 8991002125018 berhasil dibuat.
+2025-04-03T07:17:19.975Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8991002125018.png
+2025-04-03T07:17:20.892Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T07:17:47.098Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20089792
+2025-04-03T07:17:47.454Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20089792".
+2025-04-03T07:17:47.455Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20089792 (8991002125001)...
+2025-04-03T07:17:47.456Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8991002125001...
+2025-04-03T07:17:47.478Z - [32m[INFO][0m ✅ Barcode untuk 8991002125001 berhasil dibuat.
+2025-04-03T07:17:47.480Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8991002125001.png
+2025-04-03T07:17:48.729Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T07:19:14.079Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20109969
+2025-04-03T07:19:14.483Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20109969".
+2025-04-03T07:19:14.484Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20109969 (8996001600597)...
+2025-04-03T07:19:14.485Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8996001600597...
+2025-04-03T07:19:14.508Z - [32m[INFO][0m ✅ Barcode untuk 8996001600597 berhasil dibuat.
+2025-04-03T07:19:14.514Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8996001600597.png
+2025-04-03T07:19:15.423Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T07:19:22.006Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20000787
+2025-04-03T07:19:22.185Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20000787".
+2025-04-03T07:19:22.186Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20000787 (9556001047175)...
+2025-04-03T07:19:22.187Z - [32m[INFO][0m 🛠 Membuat barcode untuk 9556001047175...
+2025-04-03T07:19:22.231Z - [32m[INFO][0m ✅ Barcode untuk 9556001047175 berhasil dibuat.
+2025-04-03T07:19:22.235Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\9556001047175.png
+2025-04-03T07:19:23.143Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
