@@ -4912,3 +4912,183 @@
 2025-04-03T07:19:22.231Z - [32m[INFO][0m ✅ Barcode untuk 9556001047175 berhasil dibuat.
 2025-04-03T07:19:22.235Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\9556001047175.png
 2025-04-03T07:19:23.143Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:20.974Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
+2025-04-03T16:44:20.993Z - [32m[INFO][0m 📂 Memuat data barcode...
+2025-04-03T16:44:21.363Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6891 entri).
+2025-04-03T16:44:30.750Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137681
+2025-04-03T16:44:30.752Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20136192
+2025-04-03T16:44:30.752Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137884
+2025-04-03T16:44:30.753Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137885
+2025-04-03T16:44:30.754Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20135995
+2025-04-03T16:44:30.754Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137064
+2025-04-03T16:44:30.754Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20136191
+2025-04-03T16:44:30.754Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20136282
+2025-04-03T16:44:30.755Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137063
+2025-04-03T16:44:30.755Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20136190
+2025-04-03T16:44:31.165Z - [33m[WARNING][0m ⚠️ PLU "20136192" tidak ditemukan di database.
+2025-04-03T16:44:31.170Z - [33m[WARNING][0m ⚠️ PLU "20137681" tidak ditemukan di database.
+2025-04-03T16:44:31.308Z - [33m[WARNING][0m ⚠️ PLU "20136191" tidak ditemukan di database.
+2025-04-03T16:44:31.312Z - [33m[WARNING][0m ⚠️ PLU "20137885" tidak ditemukan di database.
+2025-04-03T16:44:31.316Z - [33m[WARNING][0m ⚠️ PLU "20136282" tidak ditemukan di database.
+2025-04-03T16:44:31.321Z - [33m[WARNING][0m ⚠️ PLU "20135995" tidak ditemukan di database.
+2025-04-03T16:44:31.326Z - [33m[WARNING][0m ⚠️ PLU "20137884" tidak ditemukan di database.
+2025-04-03T16:44:31.333Z - [33m[WARNING][0m ⚠️ PLU "20136190" tidak ditemukan di database.
+2025-04-03T16:44:31.371Z - [33m[WARNING][0m ⚠️ PLU "20137064" tidak ditemukan di database.
+2025-04-03T16:44:31.374Z - [33m[WARNING][0m ⚠️ PLU "20137063" tidak ditemukan di database.
+2025-04-03T16:44:31.934Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20136192
+2025-04-03T16:44:31.979Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:32.319Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20137681
+2025-04-03T16:44:32.321Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:32.706Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20136191
+2025-04-03T16:44:32.707Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:33.147Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20137885
+2025-04-03T16:44:33.148Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:33.438Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20136282
+2025-04-03T16:44:33.439Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:33.841Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20135995
+2025-04-03T16:44:33.845Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:34.282Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20137884
+2025-04-03T16:44:34.285Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:34.673Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20136190
+2025-04-03T16:44:34.676Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:35.077Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20137064
+2025-04-03T16:44:35.079Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-03T16:44:35.482Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Bang
+📌 *PLU yang Tidak Ditemukan:*
+20137063
+2025-04-03T16:44:35.483Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:40:54.605Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20096682
+2025-04-04T10:40:54.983Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20096682".
+2025-04-04T10:40:54.995Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20096682 (8994096223646)...
+2025-04-04T10:40:54.998Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8994096223646...
+2025-04-04T10:40:55.505Z - [32m[INFO][0m ✅ Barcode untuk 8994096223646 berhasil dibuat.
+2025-04-04T10:40:55.511Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8994096223646.png
+2025-04-04T10:40:56.444Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:41:10.897Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20097774
+2025-04-04T10:41:11.070Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20097774".
+2025-04-04T10:41:11.071Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20097774 (8998866202459)...
+2025-04-04T10:41:11.072Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8998866202459...
+2025-04-04T10:41:11.113Z - [32m[INFO][0m ✅ Barcode untuk 8998866202459 berhasil dibuat.
+2025-04-04T10:41:11.119Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8998866202459.png
+2025-04-04T10:41:12.129Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:41:25.355Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20110967
+2025-04-04T10:41:25.529Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20110967".
+2025-04-04T10:41:25.530Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20110967 (8992982700028)...
+2025-04-04T10:41:25.531Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8992982700028...
+2025-04-04T10:41:25.574Z - [32m[INFO][0m ✅ Barcode untuk 8992982700028 berhasil dibuat.
+2025-04-04T10:41:25.578Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8992982700028.png
+2025-04-04T10:41:26.365Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:41:42.584Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20126897
+2025-04-04T10:41:42.756Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20126897".
+2025-04-04T10:41:42.758Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20126897 (8992982700042)...
+2025-04-04T10:41:42.758Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8992982700042...
+2025-04-04T10:41:42.780Z - [32m[INFO][0m ✅ Barcode untuk 8992982700042 berhasil dibuat.
+2025-04-04T10:41:42.783Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8992982700042.png
+2025-04-04T10:41:43.678Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:42:11.245Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20110967
+2025-04-04T10:42:11.592Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20110967".
+2025-04-04T10:42:11.594Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20110967 (8992982700028)...
+2025-04-04T10:42:11.594Z - [32m[INFO][0m 📌 Barcode untuk 8992982700028 ditemukan di cache.
+2025-04-04T10:42:11.596Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8992982700028.png
+2025-04-04T10:42:12.123Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:42:19.877Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20125062
+2025-04-04T10:42:20.056Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20125062".
+2025-04-04T10:42:20.057Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20125062 (8993007006835)...
+2025-04-04T10:42:20.058Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8993007006835...
+2025-04-04T10:42:20.080Z - [32m[INFO][0m ✅ Barcode untuk 8993007006835 berhasil dibuat.
+2025-04-04T10:42:20.083Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8993007006835.png
+2025-04-04T10:42:20.984Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:42:35.713Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20125062
+2025-04-04T10:42:35.887Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20125062".
+2025-04-04T10:42:35.889Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20125062 (8993007006835)...
+2025-04-04T10:42:35.889Z - [32m[INFO][0m 📌 Barcode untuk 8993007006835 ditemukan di cache.
+2025-04-04T10:42:35.891Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8993007006835.png
+2025-04-04T10:42:36.458Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:42:48.123Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20132659
+2025-04-04T10:42:48.294Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20132659".
+2025-04-04T10:42:48.295Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20132659 (8993007007160)...
+2025-04-04T10:42:48.296Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8993007007160...
+2025-04-04T10:42:48.320Z - [32m[INFO][0m ✅ Barcode untuk 8993007007160 berhasil dibuat.
+2025-04-04T10:42:48.321Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8993007007160.png
+2025-04-04T10:42:49.246Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:42:58.290Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20109969
+2025-04-04T10:42:58.460Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20109969".
+2025-04-04T10:42:58.461Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20109969 (8996001600597)...
+2025-04-04T10:42:58.462Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8996001600597...
+2025-04-04T10:42:58.485Z - [32m[INFO][0m ✅ Barcode untuk 8996001600597 berhasil dibuat.
+2025-04-04T10:42:58.490Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8996001600597.png
+2025-04-04T10:42:59.024Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:43:07.196Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20090527
+2025-04-04T10:43:07.367Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20090527".
+2025-04-04T10:43:07.369Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20090527 (8991102026352)...
+2025-04-04T10:43:07.370Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8991102026352...
+2025-04-04T10:43:07.409Z - [32m[INFO][0m ✅ Barcode untuk 8991102026352 berhasil dibuat.
+2025-04-04T10:43:07.412Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8991102026352.png
+2025-04-04T10:43:08.212Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-04T10:49:49.392Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20094328
+2025-04-04T10:49:49.784Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "20094328".
+2025-04-04T10:49:49.786Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 20094328 (8996196004705)...
+2025-04-04T10:49:49.786Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8996196004705...
+2025-04-04T10:49:49.809Z - [32m[INFO][0m ✅ Barcode untuk 8996196004705 berhasil dibuat.
+2025-04-04T10:49:49.812Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8996196004705.png
+2025-04-04T10:49:50.735Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-05T15:12:12.928Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 10005980
+2025-04-05T15:12:13.344Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "10005980".
+2025-04-05T15:12:13.350Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 10005980 (4902931110451)...
+2025-04-05T15:12:13.351Z - [32m[INFO][0m 🛠 Membuat barcode untuk 4902931110451...
+2025-04-05T15:12:13.473Z - [32m[INFO][0m ✅ Barcode untuk 4902931110451 berhasil dibuat.
+2025-04-05T15:12:13.477Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\4902931110451.png
+2025-04-05T15:12:14.489Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-05T16:02:03.394Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137695
+2025-04-05T16:02:03.751Z - [33m[WARNING][0m ⚠️ PLU "20137695" tidak ditemukan di database.
+2025-04-05T16:02:04.497Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Firman
+📌 *PLU yang Tidak Ditemukan:*
+20137695
+2025-04-05T16:02:04.503Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-05T16:02:14.345Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137696
+2025-04-05T16:02:14.515Z - [33m[WARNING][0m ⚠️ PLU "20137696" tidak ditemukan di database.
+2025-04-05T16:02:15.276Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Firman
+📌 *PLU yang Tidak Ditemukan:*
+20137696
+2025-04-05T16:02:15.277Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-05T16:02:31.742Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20137696
+2025-04-05T16:02:31.917Z - [33m[WARNING][0m ⚠️ PLU "20137696" tidak ditemukan di database.
+2025-04-05T16:02:32.677Z - [32m[INFO][0m ✅ Laporan dikirim ke admin: 🔴 *Laporan PLU Tidak Ditemukan*
+👤 *Pelapor:* @Firman
+📌 *PLU yang Tidak Ditemukan:*
+20137696
+2025-04-05T16:02:32.679Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-07T02:22:28.378Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 20110964
+2025-04-07T02:22:29.198Z - [33m[WARNING][0m ⚠️ PLU "20110964" tidak ditemukan di database.
+2025-04-07T02:22:29.834Z - [31m[ERROR][0m ❌ Gagal mengirim laporan ke admin:
+2025-04-07T02:22:29.844Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Fitur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+        }
+        .container {
+            background-color: #444444;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #FFFFFF;
+            text-align: center;
+            text-shadow: 0 0 5px #00BFFF;
+        }
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .menu-item {
+            background: #555555;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border-left: 5px solid #00BFFF;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+        }
+        .menu-item h2 {
+            color: #FFFFFF;
+            margin-top: 0;
+            font-size: 22px;
+        }
+        .menu-item p {
+            color: #CCCCCC;
+            margin-bottom: 0;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #AAAAAA;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Menu Fitur</h1>
+        <div class="menu-list">
+            <div class="menu-item" onclick="window.location.href='plu-to-barcode.html'">
+                <h2>PLU to Barcode</h2>
+                <p>Konversi kode PLU menjadi barcode. Masukkan kode PLU dan sistem akan menghasilkan barcode yang sesuai.</p>
+            </div>
+            <div class="menu-item" onclick="window.location.href='monitoring-price.html'">
+                <h2>Monitoring Pricetag</h2>
+                <p>Ubah PLU menjadi gambar barcode</p>
+            </div>
+            <div class="menu-item" onclick="window.location.href='scan-banyak.html'">
+                <h2>Scan Banyak</h2>
+                <p>Masukkan PLU dan tentukan QTY nya</p>
+            </div>
+            <!-- Fitur Cari Produk telah dihapus -->
+            <div class="menu-item" onclick="window.location.href='analytics-dashboard.html'">
+                <h2>Dashboard Analitik</h2>
+                <p>Lihat statistik pengunjung website dan halaman yang paling sering dikunjungi</p>
+            </div>
+            <!-- Tambahkan menu fitur lainnya di sini di masa depan -->
+        </div>
+        <div class="footer">
+            <p>© 2025 Barcode Generator System | Dibuat oleh bang_imam</p>
+        </div>
+    </div>
+</body>
+</html>

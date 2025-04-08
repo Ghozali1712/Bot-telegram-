@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Banyak - Barcode Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/bwip-js@4.1.1/dist/bwip-js.min.js"></script>
+    <!-- QR code scanner removed as requested -->
+    <script src="user-tracking.js"></script>
+    <script src="analytics.js"></script>
+    <script src="auth.js"></script>
+    <script src="auth-check.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+        }
+        .container {
+            background-color: #444444;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #FFFFFF;
+            text-align: center;
+            text-shadow: 0 0 5px #00BFFF;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            color: #00BFFF;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #555555;
+            border-radius: 4px;
+            background-color: #444444;
+            color: #ffffff;
+        }
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .input-row input[type="number"] {
+            width: 80px;
+        }
+        button {
+            background: #00BFFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2196f3;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        .barcode {
+            margin: 20px auto;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            max-width: fit-content;
+        }
+        .barcode canvas {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .nav-button {
+            background: #00BFFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .nav-button:hover {
+            background-color: #2196f3;
+        }
+        .nav-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .not-found-message {
+            margin-top: 15px;
+            padding: 10px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            text-align: center;
+        }
+        #qr-reader {
+            width: 100%;
+            margin: 20px 0;
+        }
+        /* QR code scanner button styles removed */
+        .info-text {
+            color: #CCCCCC;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .back-button {
+            background: #555555;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scan Banyak</h1>
+        <div class="form-group">
+            <label for="pluInput">Masukkan PLU:</label>
+            <input type="text" id="pluInput" placeholder="Masukkan kode PLU">
+            <p class="info-text">Masukkan kode PLU produk yang ingin di-scan.</p>
+        </div>
+        <div class="form-group">
+            <label for="qtyInput">Masukkan Kuantitas (Maksimal 2 digit):</label>
+            <input type="number" id="qtyInput" min="1" max="99" placeholder="Jumlah">
+            <p class="info-text">Masukkan jumlah produk (1-99).</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <button onclick="generateBarcode()">Generate Barcode</button>
+        </div>
+        <div id="result"></div>
+        <button class="back-button" onclick="window.location.href='menu.html'">Kembali ke Menu</button>
+    </div>
+
+    <script src="whatsapp-notification.js"></script>
+    <script>
+        // QR code scanner functionality removed as requested
+
+        async function loadBarcodeData() {
+            try {
+                const response = await fetch('barcode.json');
+                if (!response.ok) throw new Error('Failed to load data');
+                const data = await response.json();
+                return data.barcodesheet || [];
+            } catch (error) {
+                console.error('Error loading barcode data:', error);
+                return [];
+            }
+        }
+
+        async function generateBarcode() {
+            const pluInput = document.getElementById('pluInput').value.trim();
+            const qtyInput = document.getElementById('qtyInput').value.trim();
+            const resultDiv = document.getElementById('result');
+            
+            // Lacak penggunaan fitur
+            window.UserTracking.trackFeatureUsage('Scan Banyak');
+            
+            if (!pluInput) {
+                alert('Silakan masukkan PLU!');
+                return;
+            }
+            
+            if (!qtyInput || qtyInput < 1 || qtyInput > 99) {
+                alert('Silakan masukkan kuantitas antara 1-99!');
+                return;
+            }
+            
+            // Format kuantitas menjadi 2 digit (misalnya: 1 menjadi 01)
+            const formattedQty = qtyInput.padStart(2, '0');
+            
+            // Load barcode data
+            const barcodeData = await loadBarcodeData();
+            
+            // Hapus pesan error yang lama jika ada
+            const existingErrorDiv = document.getElementById('errorMessage');
+            if (existingErrorDiv) {
+                existingErrorDiv.remove();
+            }
+
+            resultDiv.innerHTML = '';
+            
+            // Cari PLU dalam data barcode
+            const barcodeInfo = barcodeData.find(item => item.plu.toString() === pluInput);
+            
+            if (barcodeInfo) {
+                // Format barcode dengan rumus Bplu00qty (tanpa tanda '/')
+                const formattedBarcode = `B${pluInput}00${formattedQty}`;
+                
+                try {
+                    const canvas = document.createElement('canvas');
+                    bwipjs.toCanvas(canvas, {
+                        bcid: 'code128',
+                        text: formattedBarcode,
+                        scale: 5,
+                        height: 15,
+                        includetext: false,
+                        textxalign: 'center',
+                        textyoffset: 2
+                    });
+
+                    const container = document.createElement('div');
+                    container.className = 'barcode';
+                    container.appendChild(canvas);
+
+                    // Tidak menampilkan deskripsi barcode sesuai permintaan
+
+                    resultDiv.appendChild(container);
+                } catch (e) {
+                    console.error('Error generating barcode:', e);
+                    alert('Terjadi kesalahan saat membuat barcode.');
+                }
+            } else {
+                // PLU tidak ditemukan
+                const errorContainer = document.createElement('div');
+                errorContainer.id = 'errorMessage';
+                errorContainer.className = 'not-found-message';
+                errorContainer.textContent = 'PLU tidak ditemukan: ' + pluInput;
+                document.querySelector('.container').appendChild(errorContainer);
+
+                // Simpan PLU tidak ditemukan dan kirim notifikasi WhatsApp
+                saveNotFoundPLUs([pluInput]);
+                sendWhatsAppNotification([pluInput]);
+            }
+        }
+
+        async function saveNotFoundPLUs(notFoundPLUs) {
+            try {
+                // Baca data yang sudah ada
+                const response = await fetch('not_found_plus.json');
+                const data = await response.json();
+                
+                // Tambahkan PLU baru yang tidak ditemukan
+                const timestamp = new Date().toISOString();
+                const newNotFoundPLUs = notFoundPLUs.map(plu => ({
+                    plu: plu,
+                    timestamp: timestamp,
+                    status: 'not_found'
+                }));
+                
+                data.not_found_plus = [...data.not_found_plus, ...newNotFoundPLUs];
+                
+                // Simpan kembali ke file
+                const saveResponse = await fetch('save_barcode.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'save_not_found',
+                        data: data
+                    })
+                });
+                
+                if (!saveResponse.ok) {
+                    throw new Error('Gagal menyimpan data PLU tidak ditemukan');
+                }
+            } catch (error) {
+                console.error('Error saving not found PLUs:', error);
+            }
+        }
+    </script>
+</body>
+</html>
