@@ -139,6 +139,33 @@ Atau:
     <script>
         let html5QrcodeScanner = null;
 
+        async function getBarcodeData(plu) {
+            try {
+                // Cari di barcode (3).json terlebih dahulu
+                const response1 = await fetch('barcode (3).json');
+                const data1 = await response1.json();
+                const foundInFirstFile = data1.find(item => item.plu === plu);
+                
+                if (foundInFirstFile) {
+                    return foundInFirstFile;
+                }
+                
+                // Jika tidak ditemukan di barcode (3).json, cari di barcode.json
+                const response2 = await fetch('barcode.json');
+                const data2 = await response2.json();
+                const foundInSecondFile = data2.find(item => item.plu === plu);
+                
+                if (foundInSecondFile) {
+                    return foundInSecondFile;
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Error fetching barcode data:', error);
+                return null;
+            }
+        }
+        
         async function saveNotFoundPLUs(notFoundPLUs) {
             try {
                 // Baca data yang sudah ada
@@ -224,13 +251,46 @@ Atau:
 
         async function loadBarcodeData() {
             try {
-                const response = await fetch('barcode.json');
-                if (!response.ok) throw new Error('Failed to load data');
-                const data = await response.json();
-                return data.barcodesheet || [];
+                // Cari di barcode (3).json terlebih dahulu
+                const response1 = await fetch('barcode (3).json');
+                const data1 = await response1.json();
+                
+                // Jika tidak ditemukan, cari di barcode.json
+                const response2 = await fetch('barcode.json');
+                const data2 = await response2.json();
+                
+                // Gabungkan data dari kedua file
+                return [...data1, ...(data2.barcodesheet || [])];
             } catch (error) {
                 console.error('Error loading barcode data:', error);
                 return [];
+            }
+        }
+        
+        async function getBarcodeData(plu) {
+            try {
+                // Cari di barcode (3).json terlebih dahulu
+                const response1 = await fetch('barcode (3).json');
+                const data1 = await response1.json();
+                const foundInFirstFile = data1.find(item => item.plu === plu);
+                
+                if (foundInFirstFile) {
+                    return foundInFirstFile;
+                }
+                
+                // Jika tidak ditemukan di barcode (3).json, cari di barcode.json
+                const response2 = await fetch('barcode.json');
+                const data2 = await response2.json();
+                const foundInSecondFile = data2.find(item => item.plu === plu);
+                
+                if (foundInSecondFile) {
+                    return foundInSecondFile;
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Error fetching barcode data:', error);
+                return null;
             }
         }
 
@@ -266,9 +326,9 @@ Atau:
                 container.className = 'barcode';
                 container.appendChild(canvas);
 
-                // Tambahkan informasi PLU
+                // Tambahkan informasi PLU dan nama barang
                 const pluInfo = document.createElement('div');
-                pluInfo.textContent = `PLU: ${barcodes[currentBarcodeIndex].plu}`;
+                pluInfo.textContent = `PLU: ${barcodes[currentBarcodeIndex].plu} - Nama Barang: ${barcodes[currentBarcodeIndex].nama_barang || barcodes[currentBarcodeIndex].nama || 'Tidak tersedia'}`;
                 pluInfo.style.marginTop = '10px';
                 container.appendChild(pluInfo);
 
