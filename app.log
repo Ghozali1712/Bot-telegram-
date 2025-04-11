@@ -5933,3 +5933,16 @@
 2025-04-10T19:19:36.753Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
 2025-04-10T19:19:36.757Z - [32m[INFO][0m 📂 Memuat data barcode...
 2025-04-10T19:19:36.890Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6927 entri).
+2025-04-11T03:33:38.548Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
+2025-04-11T03:33:38.551Z - [32m[INFO][0m 📂 Memuat data barcode...
+2025-04-11T03:33:38.682Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6927 entri).
+2025-04-11T03:51:32.876Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 10010090
+2025-04-11T03:51:33.238Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "10010090".
+2025-04-11T03:51:33.239Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 10010090 (8999909982000)...
+2025-04-11T03:51:33.240Z - [32m[INFO][0m 🛠 Membuat barcode untuk 8999909982000...
+2025-04-11T03:51:33.427Z - [32m[INFO][0m ✅ Barcode untuk 8999909982000 berhasil dibuat.
+2025-04-11T03:51:33.429Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\8999909982000.png
+2025-04-11T03:51:34.382Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-04-11T13:11:42.998Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
+2025-04-11T13:11:43.002Z - [32m[INFO][0m 📂 Memuat data barcode...
+2025-04-11T13:11:43.139Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6927 entri).
