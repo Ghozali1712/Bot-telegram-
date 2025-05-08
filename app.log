@@ -5946,3 +5946,20 @@
 2025-04-11T13:11:42.998Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
 2025-04-11T13:11:43.002Z - [32m[INFO][0m 📂 Memuat data barcode...
 2025-04-11T13:11:43.139Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6927 entri).
+2025-05-07T20:38:32.290Z - [32m[INFO][0m 🚀 Worker pool dibuat dengan 2 pekerja.
+2025-05-07T20:38:32.293Z - [32m[INFO][0m 📂 Memuat data barcode...
+2025-05-07T20:38:32.555Z - [32m[INFO][0m ✅ Data barcode berhasil dimuat (6927 entri).
+2025-05-08T09:48:27.494Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 10010100
+2025-05-08T09:48:27.921Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "10010100".
+2025-05-08T09:48:27.923Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 10010100 (02888224)...
+2025-05-08T09:48:27.924Z - [32m[INFO][0m 🛠 Membuat barcode untuk 02888224...
+2025-05-08T09:48:28.556Z - [32m[INFO][0m ✅ Barcode untuk 02888224 berhasil dibuat.
+2025-05-08T09:48:29.609Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\02888224.png
+2025-05-08T09:48:30.595Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.
+2025-05-08T09:48:42.053Z - [32m[INFO][0m 🔍 Memulai pencarian untuk PLU: 10038082
+2025-05-08T09:48:42.308Z - [32m[INFO][0m ✅ Ditemukan 1 hasil untuk PLU "10038082".
+2025-05-08T09:48:42.311Z - [32m[INFO][0m 🔄 Membuat gambar barcode untuk PLU 10038082 (012290)...
+2025-05-08T09:48:42.313Z - [32m[INFO][0m 🛠 Membuat barcode untuk 012290...
+2025-05-08T09:48:42.353Z - [32m[INFO][0m ✅ Barcode untuk 012290 berhasil dibuat.
+2025-05-08T09:48:42.357Z - [32m[INFO][0m 📦 Gambar barcode disimpan: C:\Users\Administrator\Bot-telegram-\temp\012290.png
+2025-05-08T09:48:43.301Z - [32m[INFO][0m ✅ Semua barcode yang ditemukan telah diproses dan dikirim.

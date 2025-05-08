@@ -3,87 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Fitur</title>
+    <title>Barcode System Dashboard</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #e2e8f0;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
         }
+        
         .container {
-            background-color: #444444;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
-        h1 {
-            color: #FFFFFF;
-            text-align: center;
-            text-shadow: 0 0 5px #00BFFF;
-        }
-        .menu-list {
+        
+        header {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .menu-item {
-            background: #555555;
-            border-radius: 8px;
-            padding: 20px;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
-            border-left: 5px solid #00BFFF;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
         }
-        .menu-item:hover {
+        
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
         }
-        .menu-item h2 {
-            color: #FFFFFF;
-            margin-top: 0;
-            font-size: 22px;
+        
+        .card-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
         }
-        .menu-item p {
-            color: #CCCCCC;
-            margin-bottom: 0;
+        
+        .card-content {
+            padding: 1.5rem;
         }
-        .footer {
-            margin-top: 30px;
+        
+        .card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .card-btn:hover {
+            color: white;
+        }
+        
+        footer {
             text-align: center;
-            color: #AAAAAA;
-            font-size: 14px;
+            padding: 2rem 0;
+            color: var(--gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Menu Fitur</h1>
-        <div class="menu-list">
-            <div class="menu-item" onclick="window.location.href='plu-to-barcode.html'">
-                <h2>PLU to Barcode</h2>
-                <p>Konversi kode PLU menjadi barcode. Masukkan kode PLU dan sistem akan menghasilkan barcode yang sesuai.</p>
+        <header>
+            <div class="logo">
+                <i class="fas fa-barcode"></i>
+                <h1>BarcodeHub</h1>
             </div>
-            <div class="menu-item" onclick="window.location.href='monitoring-price.html'">
-                <h2>Monitoring Pricetag</h2>
-                <p>Ubah PLU menjadi gambar barcode</p>
-            </div>
-            <div class="menu-item" onclick="window.location.href='scan-banyak.html'">
-                <h2>Scan Banyak</h2>
-                <p>Masukkan PLU dan tentukan QTY nya</p>
-            </div>
-            <!-- Fitur Cari Produk telah dihapus -->
-            <div class="menu-item" onclick="window.location.href='analytics-dashboard.html'">
-                <h2>Dashboard Analitik</h2>
-                <p>Lihat statistik pengunjung website dan halaman yang paling sering dikunjungi</p>
-            </div>
-            <!-- Tambahkan menu fitur lainnya di sini di masa depan -->
+            <nav>
+                <ul>
+                    <li><a href="menu.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                    <li><a href="#"><i class="fas fa-user-circle"></i> Account</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="hero">
+            <h2>Barcode Management System</h2>
+            <p>A comprehensive solution for all your barcode generation and management needs. Simple, fast, and reliable.</p>
         </div>
-        <div class="footer">
-            <p>© 2025 Barcode Generator System | Dibuat oleh bang_imam</p>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value">5,000+</div>
+                <div class="stat-label">Barcodes Generated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">System Uptime</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">Scanning Accuracy</div>
+            </div>
         </div>
+        
+        <div class="card-grid">
+            <div class="card" onclick="window.location.href='plu-to-barcode.html'">
+                <div class="card-icon">
+                    <i class="fas fa-barcode"></i>
+                </div>
+                <div class="card-content">
+                    <h3>PLU to Barcode</h3>
+                    <p>Convert PLU codes to barcodes. Input PLU codes and the system will generate corresponding barcodes instantly.</p>
+                    <div class="card-btn">Access Tool <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.location.href='monitoring-price.html'">
+                <div class="card-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Price Tag Monitoring</h3>
+                    <p>Convert PLU codes to barcode images with price tag information for easy monitoring and management.</p>
+                    <div class="card-btn">Access Tool <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.location.href='scan-banyak.html'">
+                <div class="card-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Batch Scanning</h3>
+                    <p>Enter PLU codes and specify quantities for bulk processing and barcode generation.</p>
+                    <div class="card-btn">Access Tool <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.location.href='analytics-dashboard.html'">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Analytics Dashboard</h3>
+                    <p>View website visitor statistics and analytics about the most frequently visited pages.</p>
+                    <div class="card-btn">Access Tool <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Support</a>
+            </div>
+            <p>© 2025 BarcodeHub | Developed by bang_imam</p>
+        </footer>
     </div>
 </body>
 </html>

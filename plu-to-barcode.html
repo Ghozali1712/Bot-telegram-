@@ -1,161 +1,518 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Generator</title>
+    <title>PLU ke Barcode - BarcodeHub</title>
     <script src="https://cdn.jsdelivr.net/npm/bwip-js@4.1.1/dist/bwip-js.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
     <script src="user-tracking.js"></script>
     <script src="analytics.js"></script>
-    <script src="auth.js"></script>
-    <script src="auth-check.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #e2e8f0;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
         }
+        
         .container {
-            background-color: #444444;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
-        h1 {
-            color: #FFFFFF;
-            text-align: center;
-            text-shadow: 0 0 5px #00BFFF;
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumb a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb i {
+            margin: 0 0.5rem;
+            font-size: 0.7rem;
+        }
+        
+        .page-title {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .card-header {
+            background: rgba(30, 41, 59, 0.9);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card-header h2 i {
+            color: var(--primary);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--light);
+        }
+        
         textarea {
             width: 100%;
-            height: 100px;
-            padding: 8px;
-            border: 1px solid #555555;
-            border-radius: 4px;
+            height: 120px;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            background-color: rgba(15, 23, 42, 0.6);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
             resize: vertical;
-            background-color: #444444;
-            color: #ffffff;
         }
-        button {
-            background: #00BFFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
         }
-        button:hover {
-            background-color: #2196f3;
+        
+        textarea::placeholder {
+            color: var(--gray);
         }
-        #result {
-            margin-top: 20px;
-        }
-        .barcode {
-            margin: 20px auto;
-            text-align: center;
-            background-color: white;
-            padding: 20px;
-            max-width: fit-content;
-        }
-        .barcode canvas {
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        .navigation-buttons {
+        
+        .btn-group {
             display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .nav-button {
-            background: #00BFFF;
-            color: white;
-            padding: 10px 20px;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
             cursor: pointer;
-            font-size: 16px;
+            transition: all 0.3s;
         }
-        .nav-button:hover {
-            background-color: #2196f3;
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
         }
-        .nav-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
         }
-        .not-found-message {
-            margin-top: 15px;
-            padding: 10px;
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
-            text-align: center;
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
         }
+        
+        .btn-secondary:hover {
+            background-color: #4338ca;
+        }
+        
         #qr-reader {
             width: 100%;
-            margin: 20px 0;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
         }
-        .scan-button {
-            background: #FF5722;
-            margin-right: 10px;
+        
+        #result {
+            margin-top: 2rem;
         }
-        .scan-button:hover {
-            background-color: #E64A19;
+        
+        .barcode-container {
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: height 0.3s ease;
+        }
+        
+        .barcode-swiper {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            overflow: hidden;
+            touch-action: pan-y;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            z-index: 100;
+        }
+        
+        .barcode {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+            user-select: none;
+            touch-action: pan-y;
+        }
+        
+        .barcode canvas {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        
+        .barcode-info {
+            margin-top: 1rem;
+            text-align: center;
+            color: #111827;
+            width: 100%;
+        }
+        
+        .barcode-plu {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .barcode-desc {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: #4b5563;
+            text-align: center;
+            word-wrap: break-word;
+        }
+        
+        .not-found-message {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #ef4444;
+            font-size: 0.9rem;
+        }
+        
+        .navigation-controls {
+            display: none;
+        }
+        
+        .swipe-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .swipe-indicator i {
+            font-size: 1.5rem;
+            animation: bounce 1.5s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+        
+        .not-found-container {
+            background-color: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .not-found-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ef4444;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .not-found-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .not-found-item {
+            background-color: rgba(239, 68, 68, 0.1);
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            color: #ef4444;
+            font-size: 0.9rem;
+        }
+        
+        .barcode-error {
+            background-color: rgba(239, 68, 68, 0.1);
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            color: #ef4444;
+            font-size: 0.9rem;
+            text-align: center;
+            margin: 1rem 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Barcode Generator</h1>
-        <div class="form-group">
-            <label for="pluInput" style="color: #00BFFF;">Masukkan PLU (pisahkan dengan koma atau baris baru):</label>
-            <textarea id="pluInput" placeholder="Contoh: 1,2,3
+        <header>
+            <div class="logo" onclick="window.location.href='menu.html'" style="cursor: pointer;">
+                <i class="fas fa-barcode"></i>
+                <h1>BarcodeHub</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="menu.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Bantuan</a></li>
+                    <li><a href="#"><i class="fas fa-user-circle"></i> Akun</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="breadcrumb">
+            <a href="menu.html">Beranda</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>PLU ke Barcode</span>
+        </div>
+        
+        <h1 class="page-title">Generator PLU ke Barcode</h1>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-keyboard"></i> Masukkan Kode PLU</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="pluInput">Masukkan kode PLU (pisahkan dengan koma atau baris baru):</label>
+                    <textarea id="pluInput" placeholder="Contoh: 1,2,3
 Atau:
 1
 2
 3"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="startScanner()">
+                        <i class="fas fa-qrcode"></i> Pindai QR Code
+                    </button>
+                    <button class="btn btn-primary" onclick="generateBarcodes()">
+                        <i class="fas fa-barcode"></i> Buat Barcode
+                    </button>
+                </div>
+                <div id="qr-reader"></div>
+            </div>
         </div>
-        <div style="margin-bottom: 20px;">
-            <button class="scan-button" onclick="startScanner()">Scan QR Code</button>
-            <button onclick="generateBarcodes()">Generate Barcode</button>
-        </div>
-        <div id="qr-reader"></div>
+        
         <div id="result"></div>
+        
+        <footer>
+            <p>© 2025 BarcodeHub | Dikembangkan oleh bang_imam</p>
+        </footer>
     </div>
 
     <script src="whatsapp-notification.js"></script>
     <script>
         let html5QrcodeScanner = null;
+        let currentBarcodeIndex = 0;
+        let barcodeDataArray = [];
+        let touchStartY = 0;
+        let touchEndY = 0;
 
         async function getBarcodeData(plu) {
             try {
-                // Cari di barcode (3).json terlebih dahulu
+                // File utama adalah barcode (3).json
                 const response1 = await fetch('barcode (3).json');
                 const data1 = await response1.json();
-                const foundInFirstFile = data1.find(item => item.plu === plu);
+                
+                // Untuk perbandingan yang lebih fleksibel, cek tipe data
+                // Gunakan loose equality (==) untuk mencocokkan string dengan number
+                const foundInFirstFile = data1.find(item => item.plu == plu || 
+                                                 item.barcode == plu);
                 
                 if (foundInFirstFile) {
+                    foundInFirstFile.source = 'main';
                     return foundInFirstFile;
                 }
                 
-                // Jika tidak ditemukan di barcode (3).json, cari di barcode.json
+                // Jika tidak ditemukan di file utama, cari di barcode.json
                 const response2 = await fetch('barcode.json');
                 const data2 = await response2.json();
-                const foundInSecondFile = data2.find(item => item.plu === plu);
+                
+                // Ambil array data (barcodesheet) jika ada
+                const dataArray = Array.isArray(data2) ? data2 : (data2.barcodesheet || []);
+                
+                // Gunakan loose equality (==) untuk mencocokkan string dengan number
+                const foundInSecondFile = dataArray.find(item => item.plu == plu || 
+                                                      item.barcode == plu);
                 
                 if (foundInSecondFile) {
+                    foundInSecondFile.source = 'secondary';
                     return foundInSecondFile;
                 }
                 
@@ -201,233 +558,366 @@ Atau:
                 console.error('Error saving not found PLUs:', error);
             }
         }
-
-        function startScanner() {
-            if (html5QrcodeScanner === null) {
-                html5QrcodeScanner = new Html5QrcodeScanner(
-                    "qr-reader",
-                    { fps: 10, qrbox: {width: 250, height: 250} },
-                    false
-                );
-                html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-            } else {
-                html5QrcodeScanner.clear();
-                html5QrcodeScanner = null;
-                document.getElementById('qr-reader').innerHTML = '';
-            }
-        }
-
-        let scannedPLUs = [];
-
-        function onScanSuccess(decodedText, decodedResult) {
-            // Add scanned PLU to array
-            if (!scannedPLUs.includes(decodedText)) {
-                scannedPLUs.push(decodedText);
-            }
-
-            // Update input field with all scanned PLUs
-            document.getElementById('pluInput').value = scannedPLUs.join(',');
-            generateBarcodes();
-
-            // Clear scanner but don't remove it
-            if (html5QrcodeScanner) {
-                html5QrcodeScanner.pause();
-                
-                // Add continue scan button
-                const continueButton = document.createElement('button');
-                continueButton.textContent = 'Lanjutkan Scan';
-                continueButton.onclick = () => {
-                    html5QrcodeScanner.resume();
-                    continueButton.remove();
-                };
-                document.getElementById('qr-reader').appendChild(continueButton);
-            }
-        }
-
-        function onScanFailure(error) {
-            // Handle scan failure, usually better to ignore and keep scanning
-            console.warn(`QR Code scanning failed = ${error}`);
-        }
-
-        async function loadBarcodeData() {
-            try {
-                // Cari di barcode (3).json terlebih dahulu
-                const response1 = await fetch('barcode (3).json');
-                const data1 = await response1.json();
-                
-                // Jika tidak ditemukan, cari di barcode.json
-                const response2 = await fetch('barcode.json');
-                const data2 = await response2.json();
-                
-                // Gabungkan data dari kedua file
-                return [...data1, ...(data2.barcodesheet || [])];
-            } catch (error) {
-                console.error('Error loading barcode data:', error);
-                return [];
-            }
-        }
         
-        async function getBarcodeData(plu) {
+        function showBarcode(index) {
+            if (barcodeDataArray.length === 0) return;
+            
+            // Ensure index is within bounds
+            currentBarcodeIndex = Math.max(0, Math.min(index, barcodeDataArray.length - 1));
+            
+            const barcodeContainer = document.getElementById('barcodeContainer');
+            const item = barcodeDataArray[currentBarcodeIndex];
+            
+            // Clear previous content
+            barcodeContainer.innerHTML = '';
+            
+            // Hanya menampilkan item tipe 'barcode'
+            const barcode = document.createElement('div');
+            barcode.className = 'barcode';
+            
             try {
-                // Cari di barcode (3).json terlebih dahulu
-                const response1 = await fetch('barcode (3).json');
-                const data1 = await response1.json();
-                const foundInFirstFile = data1.find(item => item.plu === plu);
-                
-                if (foundInFirstFile) {
-                    return foundInFirstFile;
-                }
-                
-                // Jika tidak ditemukan di barcode (3).json, cari di barcode.json
-                const response2 = await fetch('barcode.json');
-                const data2 = await response2.json();
-                const foundInSecondFile = data2.find(item => item.plu === plu);
-                
-                if (foundInSecondFile) {
-                    return foundInSecondFile;
-                }
-                
-                return null;
-            } catch (error) {
-                console.error('Error fetching barcode data:', error);
-                return null;
-            }
-        }
-
-        let currentBarcodeIndex = 0;
-        let barcodes = [];
-
-        function updateNavigationButtons() {
-            const prevButton = document.getElementById('prevButton');
-            const nextButton = document.getElementById('nextButton');
-            prevButton.disabled = currentBarcodeIndex === 0;
-            nextButton.disabled = currentBarcodeIndex === barcodes.length - 1;
-        }
-
-        function showCurrentBarcode() {
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = '';
-
-            if (barcodes.length === 0) return;
-
-            try {
+                // Generate barcode dengan kualitas lebih tinggi
                 const canvas = document.createElement('canvas');
                 bwipjs.toCanvas(canvas, {
                     bcid: 'code128',
-                    text: barcodes[currentBarcodeIndex].barcode,
+                    text: item.data.barcode || item.data.plu,
                     scale: 5,
                     height: 15,
                     includetext: true,
                     textxalign: 'center',
-                    textyoffset: 2
+                    textyoffset: 3,
+                    textsize: 12
                 });
-
-                const container = document.createElement('div');
-                container.className = 'barcode';
-                container.appendChild(canvas);
-
-                // Tambahkan informasi PLU dan nama barang
-                const pluInfo = document.createElement('div');
-                pluInfo.textContent = `PLU: ${barcodes[currentBarcodeIndex].plu} - Nama Barang: ${barcodes[currentBarcodeIndex].nama_barang || barcodes[currentBarcodeIndex].nama || 'Tidak tersedia'}`;
-                pluInfo.style.marginTop = '10px';
-                container.appendChild(pluInfo);
-
-                resultDiv.appendChild(container);
-
-                // Tambahkan tombol navigasi
-                const navButtons = document.createElement('div');
-                navButtons.className = 'navigation-buttons';
-                navButtons.innerHTML = `
-                    <button id="prevButton" class="nav-button" onclick="previousBarcode()">← Sebelumnya</button>
-                    <button id="nextButton" class="nav-button" onclick="nextBarcode()">Selanjutnya →</button>
-                `;
-                resultDiv.appendChild(navButtons);
-
-                updateNavigationButtons();
+                
+                // Add info below barcode
+                const info = document.createElement('div');
+                info.className = 'barcode-info';
+                
+                const pluElement = document.createElement('div');
+                pluElement.className = 'barcode-plu';
+                pluElement.textContent = `PLU: ${item.data.plu}`;
+                
+                const descElement = document.createElement('div');
+                descElement.className = 'barcode-desc';
+                const description = item.data.deskripsi || item.data.nama_barang || item.data.nama || 'Tidak ada deskripsi';
+                descElement.textContent = description;
+                
+                info.appendChild(pluElement);
+                info.appendChild(descElement);
+                
+                barcode.appendChild(canvas);
+                barcode.appendChild(info);
+                barcodeContainer.appendChild(barcode);
             } catch (e) {
-                console.error('Error generating barcode:', e);
+                console.error(`Error generating barcode:`, e);
+                barcode.innerHTML = `<div class="barcode-error">Error membuat barcode</div>`;
+                barcodeContainer.appendChild(barcode);
             }
+            
+            // Update counter
+            document.getElementById('barcodeCounter').textContent = `${currentBarcodeIndex + 1} / ${barcodeDataArray.length}`;
         }
-
-        function nextBarcode() {
-            if (currentBarcodeIndex < barcodes.length - 1) {
-                currentBarcodeIndex++;
-                showCurrentBarcode();
-            }
-        }
-
-        function previousBarcode() {
+        
+        function prevBarcode() {
             if (currentBarcodeIndex > 0) {
-                currentBarcodeIndex--;
-                showCurrentBarcode();
+                showBarcode(currentBarcodeIndex - 1);
             }
+        }
+        
+        function nextBarcode() {
+            if (currentBarcodeIndex < barcodeDataArray.length - 1) {
+                showBarcode(currentBarcodeIndex + 1);
+            }
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 30; // Turunkan threshold untuk lebih sensitif
+            const swipeDistance = touchEndY - touchStartY;
+            
+            if (swipeDistance > swipeThreshold) {
+                // Swipe down to go up (previous)
+                prevBarcode();
+            } else if (swipeDistance < -swipeThreshold) {
+                // Swipe up to go down (next)
+                nextBarcode();
+            }
+        }
+
+        function setupSwipeHandlers() {
+            const barcodeSwiper = document.getElementById('barcodeSwiper');
+            
+            // Tangani sentuhan untuk swipe
+            barcodeSwiper.addEventListener('touchstart', function(e) {
+                // Mencegah event propagasi ke halaman
+                e.stopPropagation();
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: false });
+            
+            barcodeSwiper.addEventListener('touchmove', function(e) {
+                // Mencegah event propagasi ke halaman
+                e.stopPropagation();
+                // Selalu mencegah scroll halaman saat swipe barcode
+                e.preventDefault();
+                
+                // Simpan posisi jari saat ini
+                const currentY = e.changedTouches[0].screenY;
+                const deltaY = touchStartY - currentY;
+                
+                // Berikan efek visual gerakan
+                const container = document.querySelector('.barcode');
+                if (container) {
+                    // Terapkan transformasi visual terbatas
+                    const maxTranslate = 50;
+                    const translateY = Math.max(-maxTranslate, Math.min(maxTranslate, -deltaY / 2));
+                    container.style.transform = `translateY(${translateY}px)`;
+                }
+            }, { passive: false });
+            
+            barcodeSwiper.addEventListener('touchend', function(e) {
+                // Mencegah event propagasi ke halaman
+                e.stopPropagation();
+                touchEndY = e.changedTouches[0].screenY;
+                
+                // Reset transformasi
+                const container = document.querySelector('.barcode');
+                if (container) {
+                    container.style.transform = '';
+                }
+                
+                handleSwipe();
+            }, { passive: false });
+            
+            // Tambahkan navigasi mouse wheel
+            barcodeSwiper.addEventListener('wheel', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                
+                if (e.deltaY > 0) {
+                    nextBarcode();
+                } else {
+                    prevBarcode();
+                }
+            }, { passive: false });
+            
+            // Tambahkan navigasi keyboard
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowUp') {
+                    prevBarcode();
+                } else if (e.key === 'ArrowDown') {
+                    nextBarcode();
+                }
+            });
+        }
+
+        // Modifikasi fungsi untuk menangani swipe dengan mouse
+        function setupMouseSwipe() {
+            const barcodeSwiper = document.getElementById('barcodeSwiper');
+            if (!barcodeSwiper) return;
+            
+            let mouseStartY = 0;
+            let mouseEndY = 0;
+            let isMouseDown = false;
+            
+            barcodeSwiper.addEventListener('mousedown', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                isMouseDown = true;
+                mouseStartY = e.clientY;
+                // Ubah cursor
+                this.style.cursor = 'grabbing';
+            }, { passive: false });
+            
+            document.addEventListener('mouseup', function(e) {
+                if (!isMouseDown) return;
+                
+                mouseEndY = e.clientY;
+                const swipeDistance = mouseEndY - mouseStartY;
+                
+                if (Math.abs(swipeDistance) > 30) {
+                    if (swipeDistance > 0) {
+                        prevBarcode();
+                    } else {
+                        nextBarcode();
+                    }
+                }
+                
+                isMouseDown = false;
+                // Kembalikan cursor
+                if (barcodeSwiper) {
+                    barcodeSwiper.style.cursor = 'grab';
+                }
+                
+                // Reset visual
+                const container = document.querySelector('.barcode');
+                if (container) {
+                    container.style.transform = '';
+                }
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (!isMouseDown) return;
+                
+                const currentY = e.clientY;
+                const deltaY = mouseStartY - currentY;
+                
+                // Berikan efek visual gerakan
+                const container = document.querySelector('.barcode');
+                if (container) {
+                    // Terapkan transformasi visual terbatas
+                    const maxTranslate = 50;
+                    const translateY = Math.max(-maxTranslate, Math.min(maxTranslate, -deltaY / 2));
+                    container.style.transform = `translateY(${translateY}px)`;
+                }
+            });
         }
 
         async function generateBarcodes() {
-            const pluInput = document.getElementById('pluInput').value.trim();
+            // Get the PLU input
+            const input = document.getElementById('pluInput').value.trim();
             
-            // Lacak penggunaan fitur
-            window.UserTracking.trackFeatureUsage('PLU to Barcode');
-            const resultDiv = document.getElementById('result');
-            
-            // Lacak penggunaan fitur
-            window.UserTracking.trackFeatureUsage('PLU to Barcode');
-            
-            if (!pluInput) {
-                alert('Silakan masukkan PLU!');
+            // Check if input is empty
+            if (!input) {
+                document.getElementById('result').innerHTML = '<div class="not-found-message"><i class="fas fa-exclamation-circle"></i> Silakan masukkan setidaknya satu kode PLU</div>';
                 return;
             }
             
-            // Split input by commas or new lines
-            const plus = pluInput.split(/[,\n]/).map(p => p.trim()).filter(p => p);
+            // Parse the input (comma-separated or newline-separated)
+            const plus = input.split(/[,\n]/).map(plu => plu.trim()).filter(plu => plu);
             
-            // Load barcode data
-            const barcodeData = await loadBarcodeData();
-            
-            // Hapus pesan error yang lama jika ada
-            const existingErrorDiv = document.getElementById('errorMessage');
-            if (existingErrorDiv) {
-                existingErrorDiv.remove();
+            if (plus.length === 0) {
+                document.getElementById('result').innerHTML = '<div class="not-found-message"><i class="fas fa-exclamation-circle"></i> Silakan masukkan setidaknya satu kode PLU yang valid</div>';
+                return;
             }
-
-            resultDiv.innerHTML = '';
-            const notFoundPLUs = [];
-            barcodes = [];
+            
+            // Reset data array and current index
+            barcodeDataArray = [];
             currentBarcodeIndex = 0;
             
+            // Setup result container dengan area terpisah untuk error dan barcode
+            document.getElementById('result').innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-barcode"></i> Barcode yang Dihasilkan</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="error-container"></div>
+                        <div class="barcode-swiper" id="barcodeSwiper" style="cursor: grab;">
+                            <div class="barcode-container" id="barcodeContainer">
+                                <div class="barcode">
+                                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #2563eb; margin: 2rem 0;"></i>
+                                    <div style="color: #64748b;">Memuat barcode...</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swipe-indicator" id="swipe-indicator">
+                            <i class="fas fa-hand-point-up"></i>
+                            <div>Geser ke atas atau bawah untuk melihat barcode lainnya</div>
+                        </div>
+                        
+                        <div class="barcode-counter" id="barcodeCounter">0 / 0</div>
+                    </div>
+                </div>
+            `;
+            
+            // Setup swipe handlers
+            setupSwipeHandlers();
+            setupMouseSwipe();
+            
+            // Track not found PLUs
+            const notFoundPLUs = [];
+            const foundPLUs = [];
+            
+            // Process each PLU
             for (const plu of plus) {
-                const barcodeInfo = barcodeData.find(item => item.plu.toString() === plu);
+                const barcodeData = await getBarcodeData(plu);
                 
-                if (barcodeInfo) {
-                    barcodes.push(barcodeInfo);
+                if (barcodeData) {
+                    barcodeDataArray.push({
+                        type: 'barcode',
+                        data: barcodeData
+                    });
+                    foundPLUs.push(plu);
                 } else {
                     notFoundPLUs.push(plu);
                 }
             }
             
-            // Tampilkan barcode yang ditemukan terlebih dahulu
-            if (barcodes.length > 0) {
-                showCurrentBarcode();
-            }
-
-            // Tampilkan pesan PLU tidak ditemukan di container terpisah dan simpan ke not_found_plus.json
+            // Tampilkan PLU yang tidak ditemukan di area terpisah
+            const errorContainer = document.getElementById('error-container');
             if (notFoundPLUs.length > 0) {
-                const errorContainer = document.createElement('div');
-                errorContainer.id = 'errorMessage';
-                errorContainer.className = 'not-found-message';
-                errorContainer.textContent = 'PLU tidak ditemukan: ' + notFoundPLUs.join(', ');
-                document.querySelector('.container').appendChild(errorContainer);
-
-                // Simpan PLU tidak ditemukan ke not_found_plus.json
+                const errorHTML = `
+                    <div class="not-found-container">
+                        <div class="not-found-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>PLU Tidak Ditemukan (${notFoundPLUs.length}):</span>
+                        </div>
+                        <div class="not-found-list">
+                            ${notFoundPLUs.map(plu => `<div class="not-found-item">${plu}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+                errorContainer.innerHTML = errorHTML;
+                
+                // Simpan ke database untuk tracking
                 saveNotFoundPLUs(notFoundPLUs);
-                // Kirim notifikasi WhatsApp ke admin
-                sendWhatsAppNotification(notFoundPLUs);
             }
             
-            // Tampilkan barcode yang ditemukan
-            if (barcodes.length > 0) {
-                showCurrentBarcode();
+            // Cek apakah ada barcode yang ditemukan
+            if (foundPLUs.length > 0) {
+                // Show the first barcode
+                showBarcode(0);
+            } else {
+                // Jika tidak ada barcode yang ditemukan sama sekali
+                document.getElementById('barcodeContainer').innerHTML = '';
+                document.getElementById('swipe-indicator').style.display = 'none';
+                document.getElementById('barcodeCounter').style.display = 'none';
             }
+            
+            // Track the user action
+            if (typeof trackUserAction === 'function') {
+                trackUserAction('generate_barcode', { count: plus.length, notFoundCount: notFoundPLUs.length });
+            }
+        }
+
+        function startScanner() {
+            // Clear any existing scanner
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear();
+            }
+            
+            // Create a new scanner instance
+            html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-reader",
+                { fps: 10, qrbox: 250 }
+            );
+            
+            // Define what happens when a QR code is successfully scanned
+            const onScanSuccess = (decodedText, decodedResult) => {
+                // Stop the scanner
+                html5QrcodeScanner.clear();
+                
+                // Add the scanned text to the input field
+                const pluInput = document.getElementById('pluInput');
+                const currentText = pluInput.value.trim();
+                
+                if (currentText) {
+                    pluInput.value = currentText + '\n' + decodedText;
+                } else {
+                    pluInput.value = decodedText;
+                }
+                
+                // Generate the barcode
+                generateBarcodes();
+            };
+            
+            // Start the scanner
+            html5QrcodeScanner.render(onScanSuccess);
+        }
+        
+        // Track page visit
+        if (typeof trackPageVisit === 'function') {
+            trackPageVisit('plu-to-barcode');
         }
     </script>
 </body>

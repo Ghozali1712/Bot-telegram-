@@ -3,160 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scan Banyak - Barcode Generator</title>
+    <title>Batch Scanning - BarcodeHub</title>
     <script src="https://cdn.jsdelivr.net/npm/bwip-js@4.1.1/dist/bwip-js.min.js"></script>
-    <!-- QR code scanner removed as requested -->
     <script src="user-tracking.js"></script>
     <script src="analytics.js"></script>
-    <script src="auth.js"></script>
-    <script src="auth-check.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #e2e8f0;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
         }
+        
         .container {
-            background-color: #444444;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
-        h1 {
-            color: #FFFFFF;
-            text-align: center;
-            text-shadow: 0 0 5px #00BFFF;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            color: #00BFFF;
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #555555;
-            border-radius: 4px;
-            background-color: #444444;
-            color: #ffffff;
-        }
-        .input-row {
+        
+        header {
             display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .input-row input[type="number"] {
-            width: 80px;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
-        button {
-            background: #00BFFF;
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
             color: white;
-            padding: 10px 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumb a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb i {
+            margin: 0 0.5rem;
+            font-size: 0.7rem;
+        }
+        
+        .page-title {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .card-header {
+            background: rgba(30, 41, 59, 0.9);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card-header h2 i {
+            color: var(--primary);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--light);
+        }
+        
+        .info-text {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group-prepend {
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: none;
+            border-radius: 0.5rem 0 0 0.5rem;
+            color: var(--gray);
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            background-color: rgba(15, 23, 42, 0.6);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+        
+        input[type="number"] {
+            width: 120px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
             cursor: pointer;
-            font-size: 16px;
+            transition: all 0.3s;
         }
-        button:hover {
-            background-color: #2196f3;
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
         }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #4338ca;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray);
+            color: var(--light);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--light);
+        }
+        
         #result {
-            margin-top: 20px;
+            margin-top: 2rem;
         }
+        
+        .barcode-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
         .barcode {
-            margin: 20px auto;
-            text-align: center;
             background-color: white;
-            padding: 20px;
-            max-width: fit-content;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
+        
         .barcode canvas {
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
             max-width: 100%;
             height: auto;
             display: block;
             margin: 0 auto;
         }
-        .navigation-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .nav-button {
-            background: #00BFFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .nav-button:hover {
-            background-color: #2196f3;
-        }
-        .nav-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .not-found-message {
-            margin-top: 15px;
-            padding: 10px;
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
+        
+        .barcode-info {
+            margin-top: 0.75rem;
             text-align: center;
+            color: #111827;
         }
-        #qr-reader {
-            width: 100%;
-            margin: 20px 0;
+        
+        .barcode-plu {
+            font-weight: 600;
+            font-size: 0.9rem;
         }
-        /* QR code scanner button styles removed */
-        .info-text {
-            color: #CCCCCC;
-            font-size: 14px;
-            margin-top: 5px;
+        
+        .barcode-qty {
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            color: #4b5563;
         }
-        .back-button {
-            background: #555555;
-            margin-top: 20px;
+        
+        .not-found-message {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #ef4444;
+            font-size: 0.9rem;
         }
-        .back-button:hover {
-            background-color: #666666;
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            input[type="number"] {
+                width: 100%;
+            }
+            
+            .barcode-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Scan Banyak</h1>
-        <div class="form-group">
-            <label for="pluInput">Masukkan PLU:</label>
-            <input type="text" id="pluInput" placeholder="Masukkan kode PLU">
-            <p class="info-text">Masukkan kode PLU produk yang ingin di-scan.</p>
+        <header>
+            <div class="logo" onclick="window.location.href='menu.html'" style="cursor: pointer;">
+                <i class="fas fa-barcode"></i>
+                <h1>BarcodeHub</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="menu.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                    <li><a href="#"><i class="fas fa-user-circle"></i> Account</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="breadcrumb">
+            <a href="menu.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Batch Scanning</span>
         </div>
-        <div class="form-group">
-            <label for="qtyInput">Masukkan Kuantitas (Maksimal 2 digit):</label>
-            <input type="number" id="qtyInput" min="1" max="99" placeholder="Jumlah">
-            <p class="info-text">Masukkan jumlah produk (1-99).</p>
+        
+        <h1 class="page-title">Batch Scanning</h1>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-qrcode"></i> Input Parameters</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="pluInput">PLU Code</label>
+                    <input type="text" id="pluInput" placeholder="Enter PLU code">
+                    <p class="info-text">Enter the PLU code of the product you want to scan.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="qtyInput">Quantity (Max 2 digits)</label>
+                    <div class="input-group">
+                        <input type="number" id="qtyInput" min="1" max="99" placeholder="Quantity">
+                    </div>
+                    <p class="info-text">Enter the product quantity (1-99).</p>
+                </div>
+                
+                <button class="btn btn-primary" onclick="generateBarcode()">
+                    <i class="fas fa-barcode"></i> Generate Barcode
+                </button>
+            </div>
         </div>
-        <div style="margin-bottom: 20px;">
-            <button onclick="generateBarcode()">Generate Barcode</button>
-        </div>
+        
         <div id="result"></div>
-        <button class="back-button" onclick="window.location.href='menu.html'">Kembali ke Menu</button>
+        
+        <footer>
+            <p>© 2025 BarcodeHub | Developed by bang_imam</p>
+        </footer>
     </div>
 
     <script src="whatsapp-notification.js"></script>
     <script>
-        // QR code scanner functionality removed as requested
-
         async function loadBarcodeData() {
             try {
                 const response = await fetch('barcode.json');
@@ -174,111 +424,71 @@
             const qtyInput = document.getElementById('qtyInput').value.trim();
             const resultDiv = document.getElementById('result');
             
-            // Lacak penggunaan fitur
-            window.UserTracking.trackFeatureUsage('Scan Banyak');
+            // Track feature usage
+            if (typeof trackUserAction === 'function') {
+                trackUserAction('batch_scanning', { plu: pluInput, qty: qtyInput });
+            }
             
             if (!pluInput) {
-                alert('Silakan masukkan PLU!');
+                resultDiv.innerHTML = '<div class="not-found-message"><i class="fas fa-exclamation-circle"></i> Please enter a PLU code</div>';
                 return;
             }
             
             if (!qtyInput || qtyInput < 1 || qtyInput > 99) {
-                alert('Silakan masukkan kuantitas antara 1-99!');
+                resultDiv.innerHTML = '<div class="not-found-message"><i class="fas fa-exclamation-circle"></i> Please enter a quantity between 1-99</div>';
                 return;
             }
             
-            // Format kuantitas menjadi 2 digit (misalnya: 1 menjadi 01)
-            const formattedQty = qtyInput.padStart(2, '0');
+            // Format quantity to 2 digits (e.g., 1 becomes 01)
+            const formattedQty = qtyInput.toString().padStart(2, '0');
             
-            // Load barcode data
-            const barcodeData = await loadBarcodeData();
+            // Create barcode using format B + plu + 00 + quantity (without the slashes)
+            const barcodeText = "B" + pluInput + "00" + formattedQty;
             
-            // Hapus pesan error yang lama jika ada
-            const existingErrorDiv = document.getElementById('errorMessage');
-            if (existingErrorDiv) {
-                existingErrorDiv.remove();
-            }
-
-            resultDiv.innerHTML = '';
+            // Clear previous results
+            resultDiv.innerHTML = '<div class="card"><div class="card-header"><h2><i class="fas fa-barcode"></i> Generated Barcode</h2></div><div class="card-body"><div class="barcode-container" id="barcodeContainer"></div></div></div>';
+            const barcodeContainer = document.getElementById('barcodeContainer');
             
-            // Cari PLU dalam data barcode
-            const barcodeInfo = barcodeData.find(item => item.plu.toString() === pluInput);
-            
-            if (barcodeInfo) {
-                // Format barcode dengan rumus Bplu00qty (tanpa tanda '/')
-                const formattedBarcode = `B${pluInput}00${formattedQty}`;
-                
-                try {
-                    const canvas = document.createElement('canvas');
-                    bwipjs.toCanvas(canvas, {
-                        bcid: 'code128',
-                        text: formattedBarcode,
-                        scale: 5,
-                        height: 15,
-                        includetext: false,
-                        textxalign: 'center',
-                        textyoffset: 2
-                    });
-
-                    const container = document.createElement('div');
-                    container.className = 'barcode';
-                    container.appendChild(canvas);
-
-                    // Tidak menampilkan deskripsi barcode sesuai permintaan
-
-                    resultDiv.appendChild(container);
-                } catch (e) {
-                    console.error('Error generating barcode:', e);
-                    alert('Terjadi kesalahan saat membuat barcode.');
-                }
-            } else {
-                // PLU tidak ditemukan
-                const errorContainer = document.createElement('div');
-                errorContainer.id = 'errorMessage';
-                errorContainer.className = 'not-found-message';
-                errorContainer.textContent = 'PLU tidak ditemukan: ' + pluInput;
-                document.querySelector('.container').appendChild(errorContainer);
-
-                // Simpan PLU tidak ditemukan dan kirim notifikasi WhatsApp
-                saveNotFoundPLUs([pluInput]);
-                sendWhatsAppNotification([pluInput]);
-            }
-        }
-
-        async function saveNotFoundPLUs(notFoundPLUs) {
             try {
-                // Baca data yang sudah ada
-                const response = await fetch('not_found_plus.json');
-                const data = await response.json();
+                const barcode = document.createElement('div');
+                barcode.className = 'barcode';
                 
-                // Tambahkan PLU baru yang tidak ditemukan
-                const timestamp = new Date().toISOString();
-                const newNotFoundPLUs = notFoundPLUs.map(plu => ({
-                    plu: plu,
-                    timestamp: timestamp,
-                    status: 'not_found'
-                }));
-                
-                data.not_found_plus = [...data.not_found_plus, ...newNotFoundPLUs];
-                
-                // Simpan kembali ke file
-                const saveResponse = await fetch('save_barcode.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'save_not_found',
-                        data: data
-                    })
+                // Generate barcode
+                const canvas = document.createElement('canvas');
+                bwipjs.toCanvas(canvas, {
+                    bcid: 'code128',
+                    text: barcodeText,
+                    scale: 5,
+                    height: 15,
+                    includetext: false,
+                    textxalign: 'center',
+                    textyoffset: 3,
+                    textsize: 13
                 });
                 
-                if (!saveResponse.ok) {
-                    throw new Error('Gagal menyimpan data PLU tidak ditemukan');
-                }
-            } catch (error) {
-                console.error('Error saving not found PLUs:', error);
+                // Add info below barcode
+                const info = document.createElement('div');
+                info.className = 'barcode-info';
+                
+                const pluElement = document.createElement('div');
+                pluElement.className = 'barcode-plu';
+                pluElement.textContent = `PLU: ${pluInput}`;
+                
+                info.appendChild(pluElement);
+                
+                barcode.appendChild(canvas);
+                barcode.appendChild(info);
+                barcodeContainer.appendChild(barcode);
+                
+            } catch (e) {
+                console.error('Error generating barcode:', e);
+                barcodeContainer.innerHTML = '<div class="not-found-message"><i class="fas fa-exclamation-circle"></i> Error generating barcode</div>';
             }
+        }
+        
+        // Track page visit
+        if (typeof trackPageVisit === 'function') {
+            trackPageVisit('batch-scanning');
         }
     </script>
 </body>
